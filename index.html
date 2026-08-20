@@ -174,6 +174,49 @@
   }
   .gallery a:hover img{transform:scale(1.04);}
 
+  model-viewer{
+    width:100%;
+    height:420px;
+    margin-top:16px;
+    background:rgba(236,233,224,0.03);
+    border:1px solid var(--navy-line);
+    --poster-color:transparent;
+  }
+  .viewer-hint{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--paper-dim);
+    margin-top:6px;
+  }
+
+  .model-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:12px;
+    margin-top:16px;
+  }
+  .model-tile{
+    border:1px solid var(--navy-line);
+    background:rgba(236,233,224,0.03);
+  }
+  .model-tile model-viewer{
+    width:100%;
+    height:160px;
+    margin-top:0;
+    border:none;
+    background:transparent;
+  }
+  .model-tile .model-label{
+    display:block;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:8px 10px;
+    border-top:1px solid var(--navy-line);
+  }
+
   .skills-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
@@ -217,6 +260,7 @@
   }
 </style>
 </head>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 <body>
 
 <div class="wrap">
@@ -268,6 +312,9 @@
         BS EN 13001 requirements. Produced SolidWorks assemblies and BS 8888-compliant
         technical drawings.
       </p>
+      <model-viewer src="h-beam-assembly.glb" alt="3D model of the adjustable H-beam assembly" camera-controls auto-rotate shadow-intensity="1" exposure="1" ar>
+      </model-viewer>
+      <p class="viewer-hint">// Drag to rotate &middot; scroll to zoom</p>
       <div class="gallery">
         <a href="h-beam-assembly.png" target="_blank"><img src="h-beam-assembly.png" alt="Adjustable H-beam assembly drawing"></a>
         <a href="lifting-hook.png" target="_blank"><img src="lifting-hook.png" alt="Lifting hook drawing"></a>
@@ -291,7 +338,44 @@
         with a spring-loaded gripper tip.
       </p>
       <div class="links">
-        <a href="https://github.com/yourusername/robotic-arm">Code &amp; build log (GitHub)</a>
+        <a href="https://github.com/kbaczk/robotic-arm">Code &amp; build log (GitHub)</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Off-Site Practical Engineering Training — NWTC</h3>
+      <div class="meta">Training programme · 2025</div>
+      <p>
+        Manufactured and modelled a set of turned and milled components covering
+        lathe operation, precision measurement, and CNC fundamentals — including a
+        wheel and spindle assembly with ball bearing, race, and fork. Each part was
+        also modelled in SolidWorks; rotate them below.
+      </p>
+      <div class="model-grid">
+        <div class="model-tile">
+          <model-viewer src="wheel.glb" alt="Wheel component" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Wheel</span>
+        </div>
+        <div class="model-tile">
+          <model-viewer src="fork.glb" alt="Fork component" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Fork</span>
+        </div>
+        <div class="model-tile">
+          <model-viewer src="spindle.glb" alt="Spindle component" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Spindle</span>
+        </div>
+        <div class="model-tile">
+          <model-viewer src="ball-bearing.glb" alt="Ball bearing component" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Ball Bearing</span>
+        </div>
+        <div class="model-tile">
+          <model-viewer src="race.glb" alt="Bearing race component" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Race</span>
+        </div>
+        <div class="model-tile">
+          <model-viewer src="part-1-turning.glb" alt="Turned part" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+          <span class="model-label">Turned Part</span>
+        </div>
       </div>
     </div>
   </section>
@@ -321,7 +405,7 @@
 
   <footer id="contact">
     <span>Krystianbaczkiewicz8@gmail.com</span>
-    <span><a href="https://github.com/yourusername">github.com/yourusername</a></span>
+    <span><a href="https://github.com/kbaczk">github.com/kbaczk</a></span>
   </footer>
 </div>
 
