@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krystian Baczkiewicz — Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --navy:#0B1E33;
+    --navy-line:#1E3A5A;
+    --paper:#ECE9E0;
+    --paper-dim:#B7C2CC;
+    --cyan:#6FB6E0;
+    --amber:#C98A4B;
+    --mono:'IBM Plex Mono', monospace;
+    --sans:'IBM Plex Sans', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--navy);
+    background-image:
+      linear-gradient(var(--navy-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--navy-line) 1px, transparent 1px);
+    background-size:32px 32px;
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+
+  a{color:var(--cyan);}
+
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  /* Title block header, styled after an engineering drawing title block */
+  header{
+    border-bottom:2px solid var(--paper);
+    padding:40px 0 0 0;
+  }
+  .titleblock{
+    border:1.5px solid var(--paper);
+    border-bottom:none;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .titleblock .cell{
+    padding:14px 18px;
+    border-right:1px solid var(--navy-line);
+  }
+  .titleblock .cell:last-child{border-right:none;}
+  .titleblock .cell .label{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.12em;
+    color:var(--paper-dim);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:4px;
+  }
+  .titleblock .cell .value{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--paper);
+  }
+  .titleblock .name-cell{grid-column:1 / span 2;}
+  .name-cell h1{
+    font-family:var(--mono);
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    color:var(--paper);
+  }
+  .name-cell p{
+    font-family:var(--sans);
+    font-size:14px;
+    color:var(--cyan);
+    margin-top:2px;
+  }
+
+  nav{
+    border:1.5px solid var(--paper);
+    display:flex;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  nav a{
+    flex:1;
+    text-align:center;
+    padding:10px 0;
+    border-right:1px solid var(--navy-line);
+    color:var(--paper-dim);
+    text-decoration:none;
+  }
+  nav a:last-child{border-right:none;}
+  nav a:hover{color:var(--cyan); background:rgba(111,182,224,0.08);}
+
+  section{padding:56px 0;}
+  section + section{border-top:1px dashed var(--navy-line);}
+
+  .sheet-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:10px;
+  }
+  h2{
+    font-family:var(--mono);
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:18px;
+    color:var(--paper);
+  }
+  p.lead{color:var(--paper-dim); max-width:640px;}
+
+  .project{
+    border:1px solid var(--navy-line);
+    border-left:3px solid var(--cyan);
+    padding:22px 24px;
+    margin-top:20px;
+    background:rgba(236,233,224,0.02);
+  }
+  .project h3{
+    font-family:var(--mono);
+    font-size:17px;
+    color:var(--paper);
+    margin-bottom:4px;
+  }
+  .project .meta{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--amber);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:12px;
+  }
+  .project p{color:var(--paper-dim); font-size:14px;}
+  .project .links{margin-top:14px; display:flex; gap:16px; flex-wrap:wrap;}
+  .project .links a{
+    font-family:var(--mono);
+    font-size:12px;
+    text-decoration:none;
+    border:1px solid var(--cyan);
+    padding:6px 12px;
+    color:var(--cyan);
+  }
+  .project .links a:hover{background:var(--cyan); color:var(--navy);}
+
+  .gallery{
+    margin-top:16px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:10px;
+  }
+  .gallery a{
+    display:block;
+    border:1px solid var(--navy-line);
+    overflow:hidden;
+    background:#fff;
+  }
+  .gallery img{
+    display:block;
+    width:100%;
+    height:auto;
+    transition:transform 0.2s ease;
+  }
+  .gallery a:hover img{transform:scale(1.04);}
+
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:16px;
+    margin-top:20px;
+  }
+  .skills-grid .skill{
+    border:1px solid var(--navy-line);
+    padding:14px 16px;
+  }
+  .skills-grid .skill .label{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:block;
+    margin-bottom:6px;
+  }
+  .skills-grid .skill .value{font-size:13px; color:var(--paper-dim);}
+
+  footer{
+    border-top:2px solid var(--paper);
+    padding:32px 0 48px 0;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--paper-dim);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer a{color:var(--cyan); text-decoration:none;}
+
+  @media (max-width:600px){
+    .titleblock{grid-template-columns:1fr;}
+    .titleblock .cell{border-right:none; border-bottom:1px solid var(--navy-line);}
+    .name-cell{grid-column:1;}
+    nav{flex-direction:column;}
+    nav a{border-right:none; border-bottom:1px solid var(--navy-line);}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="titleblock">
+      <div class="cell name-cell">
+        <h1>Krystian Baczkiewicz</h1>
+        <p>BEng (Hons) Mechanical Engineering — Liverpool John Moores University</p>
+      </div>
+      <div class="cell">
+        <span class="label">Sheet</span>
+        <span class="value">1 of 1</span>
+      </div>
+      <div class="cell">
+        <span class="label">Rev.</span>
+        <span class="value">2026</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <div class="sheet-label">// Profile</div>
+    <p class="lead">
+      Mechanical engineering undergraduate with hands-on manufacturing experience
+      (turning, milling, welding, assembly) and a First-class second-year result.
+      This page collects the CAD, drawings, and technical reports behind the
+      project lines on my CV — proof of work, not just a list of it.
+    </p>
+  </section>
+
+  <section id="projects">
+    <div class="sheet-label">// Projects</div>
+    <h2>Selected work</h2>
+
+    <div class="project">
+      <h3>Adjustable H-Beam Spreader — SMR Lifting System</h3>
+      <div class="meta">Group project · 2025 · Client brief: Rolls-Royce SMR Ltd</div>
+      <p>
+        Contributed a weight-optimised design concept to a 5-person team developing
+        an adjustable H-beam spreader for lifting reactor modules, selected via Pugh
+        Matrix evaluation. Carried out beam-section selection analysis across the
+        full Universal Beam catalogue (bending stress and deflection under a
+        20-tonne load) to identify the lightest section meeting LOLER 1998 and
+        BS EN 13001 requirements. Produced SolidWorks assemblies and BS 8888-compliant
+        technical drawings.
+      </p>
+      <div class="gallery">
+        <a href="images/h-beam-assembly.png" target="_blank"><img src="images/h-beam-assembly.png" alt="Adjustable H-beam assembly drawing"></a>
+        <a href="images/lifting-hook.png" target="_blank"><img src="images/lifting-hook.png" alt="Lifting hook drawing"></a>
+        <a href="images/lifting-lug.png" target="_blank"><img src="images/lifting-lug.png" alt="Lifting lug drawing"></a>
+        <a href="images/h-beam-body.png" target="_blank"><img src="images/h-beam-body.png" alt="H beam body drawing"></a>
+        <a href="images/spreader-beams.png" target="_blank"><img src="images/spreader-beams.png" alt="Spreader beam drawing"></a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Gesture-Controlled Robotic Arm</h3>
+      <div class="meta">Independent project · 2026 — ongoing</div>
+      <p>
+        Designing and building an Arduino-controlled robotic arm that mimics hand
+        gestures captured by a flex-sensor and MPU6050 IMU glove over Bluetooth.
+        Covers circuit design, servo control programming, and CAD design of custom
+        laser-cut components — including adapting a mantis-style gripper mechanism
+        with a spring-loaded gripper tip.
+      </p>
+      <div class="links">
+        <a href="https://github.com/yourusername/robotic-arm">Code &amp; build log (GitHub)</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sheet-label">// Skills</div>
+    <h2>Tools &amp; methods</h2>
+    <div class="skills-grid">
+      <div class="skill">
+        <span class="label">CAD</span>
+        <span class="value">SolidWorks, Fusion 360 — 3D modelling, assemblies, technical drawings</span>
+      </div>
+      <div class="skill">
+        <span class="label">Analysis</span>
+        <span class="value">MATLAB — calculations, simulation, optimisation</span>
+      </div>
+      <div class="skill">
+        <span class="label">Manufacturing</span>
+        <span class="value">Turning, milling, MIG/TIG welding, mechanical assembly, metrology</span>
+      </div>
+      <div class="skill">
+        <span class="label">Standards</span>
+        <span class="value">BS 8888, LOLER 1998, BS EN 13001</span>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <span>Krystianbaczkiewicz8@gmail.com</span>
+    <span><a href="https://github.com/yourusername">github.com/yourusername</a></span>
+  </footer>
+</div>
+
+</body>
+</html>
